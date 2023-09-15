@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <p style="color:white">alert</p>
+  <p style="color:white">¡alert!</p>
 </template>
 
 <style scoped>
