@@ -1,12 +1,26 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import { CustomHeader, CustomFooter } from './components/Layout';
+import { LibrosTable } from './components/Tables';
+import { LibrosForm } from './components/Forms';
 import {Spinner, Alert} from "./components/UI"
+import { createApp } from 'vue';
+
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
-  <Spinner/>
-  <Alert/>
+  <CustomHeader/>
+  <div class="container vh-100">
+    <div class="row">
+      <div class="col-md-4 col-lg-3 col-sm-12 col-xs-12 col-12 p-2">
+        <LibrosForm/>
+      </div>
+      <div class="col-md-8 col-lg-9 col-sm-12 col-xs-12 col-12 p-2">
+        <LibrosTable/>
+      </div>
+    </div>
+  </div>  
+  <CustomFooter/>
 </template>
 
 <style scoped>
