@@ -1,0 +1,44 @@
+[
+    {
+        "titulo": "El dia de la independencia",
+        "autor": "Steven Speilberg",
+        "activo": true,
+        "id": "46642579-4e9f-487b-87c8-34642f6a42bd"
+    },
+    {
+        "titulo": "Cantos del Sur",
+        "autor": "Norte Cotras",
+        "activo": true,
+        "id": "16babac1-5ce8-43d8-946c-fbdcb1e35314"
+    },
+    {
+        "titulo": "Every Day",
+        "autor": "David Levithan",
+        "activo": true,
+        "id": "8bda0e5e-bef2-4df7-8946-1f4a1d564bd6"
+    },
+    {
+        "titulo": "Mi planta de naranja lima",
+        "autor": "Mauro de Vasconcelos",
+        "activo": true,
+        "id": "bf31e7e8-e5d1-4a12-b84d-c90187fd1b91"
+    },
+    {
+        "titulo": "La filosofía de House: todos mienten",
+        "autor": "William Irwin",
+        "activo": true,
+        "id": "9203bea3-ad07-4576-80f7-2fb883d700f2"
+    },
+    {
+        "titulo": "Por trece razones",
+        "autor": "Jay Asher",
+        "activo": true,
+        "id": "0acbcd44-ac3b-42b8-8cec-12b2c22fdd85"
+    },
+    {
+        "titulo": "Las ventajas de ser invisible",
+        "autor": "Stephen Chbosky",
+        "activo": true,
+        "id": "1880d599-aef4-44d2-a781-ed11ff3af5f1"
+    }
+]

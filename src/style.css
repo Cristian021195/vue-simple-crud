@@ -6,3 +6,17 @@ header nav ul li{list-style: none;}
 header nav ul li a{color:white; text-decoration: none; padding: 0.3rem; border-radius: 0.3rem;}
 header nav ul li a:visited{color:white;}
 header nav ul li a:hover{background-color: whitesmoke; color:black; transition: all 0.3s;}
+
+tr td input[type="checkbox"]{
+  vertical-align: middle;
+}
+.table-responsive{
+  overflow-y: scroll!important;
+  height: 50vh!important;
+}
+@media only screen and (max-width: 991px){
+  .table-responsive{
+    overflow-x: scroll!important;
+  }
+  .table-responsive table {width: 540px!important; }
+}
