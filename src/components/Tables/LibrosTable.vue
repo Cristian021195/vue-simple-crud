@@ -1,49 +1,29 @@
 <script>
-    import { librosStore } from '../../store';
+    import { mapGetters, mapState } from 'vuex';
 
     export default {
         name: 'LibrosTable',
-        data(){
-            return {
-                libros: librosStore.state.libros,
-                currentAction: librosStore.state.currentAction
-            }
-        },     
-        methods: {
-            saludo(titulo){
-                console.log('hola desde: '+titulo)
-            },
+        computed: {
+            ...mapState(['libros', 'cantidadLibros'])
+        },
+        methods:{
             eliminar(id){
                 let resp = window.confirm("¿Eliminar libro?");
-                resp && librosStore.commit('borrarLibro',id);
-                if(this.currentAction == 'leidos'){
-                    this.$data.libros = librosStore.getters.listarLibrosLeidos;
-                }else if(this.currentAction == 'noLeidos'){
-                    this.$data.libros = librosStore.getters.listarLibrosNoLeidos;
-                }else if(this.currentAction == 'todos'){
-                    this.$data.libros = librosStore.getters.listarLibros;
-                }
-            },
-            getIndx(indx){
-                console.log(indx)
+                resp && this.$store.commit('borrarLibro',id);
             },
             leido(id){
-                librosStore.commit('leido',id);
-            },
-            todos(){
-                this.$data.currentAction = 'todos';
-                librosStore.commit('changeAction', 'todos')
-                this.$data.libros = librosStore.getters.listarLibros;
+                this.$store.commit('leido',id);
             },
             leidos(){
-                this.$data.currentAction = 'leidos';
-                librosStore.commit('changeAction', 'leidos')
-                this.$data.libros = librosStore.getters.listarLibrosLeidos;
+                this.$store.commit('resetTodos');
+                this.$store.commit('mutarLibrosLeidos');
+            },
+            todos(){
+                this.$store.commit('resetTodos');
             },
             noLeidos(){
-                this.$data.currentAction = 'noLeidos';
-                librosStore.commit('changeAction', 'noLeidos')
-                this.$data.libros = librosStore.getters.listarLibrosNoLeidos;
+                this.$store.commit('resetTodos');
+                this.$store.commit('mutarLibrosNoLeidos');
             }
         }
     };
@@ -52,7 +32,6 @@
 <template>
     <div class="border border-2 rounded p-2">
         <div class="d-flex justify-content-between">
-
             <h2>
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
@@ -75,8 +54,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-if="libros.length == 0"><td colspan="3" class="text-center text-danger">¡Sin libros cargados!</td></tr>
-                    <tr v-for="(libro, libro_i) in libros">
+                    <tr v-if="libros.length === 0"><td colspan="3" class="text-center text-danger">¡Sin libros cargados!</td></tr>
+                    <tr v-for="libro in libros">
                         <td>{{libro.titulo}}</td>
                         <td>{{libro.autor}}</td>
                         <td class="">
