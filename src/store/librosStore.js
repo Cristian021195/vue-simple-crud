@@ -43,15 +43,17 @@ export const librosStore = createStore({
         state.currentAction = action;
       },
       addBook (state, nuevoLibro) {
-        //console.log(state.currentAction)
         const genId = uuidv4()
         state.libros.push({...nuevoLibro, activo:true, id: genId});
         localStorage.setItem('libros', JSON.stringify(state.libros));
-
-        /*if(state.currentAction == 'leidos'){
-          state.libros = librosStore.getters.listarLibrosLeidos;
-        }*/
-
+      },
+      limpiarTodo(state){
+        for(let i = 0; i<state.libros.length; i++){
+          if(state.libros[i].activo === false){
+            state.libros.splice(i, 1);
+            i--;
+          }
+        }
       },
       borrarLibro (state, id){
         const indx = state.libros.findIndex((obj) => obj.id === id);

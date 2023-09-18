@@ -12,13 +12,20 @@
       methods:{
         cargarLibro(e){
           e.preventDefault();
-          librosStore.commit('addBook', {titulo: this.titulo, autor: this.autor})
-          //console.log(librosStore.state.currentAction)
+          //librosStore.commit('addBook', {titulo: this.titulo, autor: this.autor})
+          if(librosStore.state.currentAction == 'leidos'){
+            librosStore.commit('addBook', {titulo: this.titulo, autor: this.autor})
+          }
           e.target.reset();
         },
         handleChange(e){
           const value = e.target.value;
           this[e.target.name] = value;
+        },
+        consultarNuevos(){
+          /*console.log(librosStore.state.libros);
+          librosStore.state.libros = []*/
+          librosStore.commit('limpiarTodo')
         }
       }
   };
@@ -41,6 +48,7 @@
     <input class="form-control mb-3" type="text" id="autor" placeholder="Autor del libro.." 
     name="autor" min="3" max="50" required v-on:input="handleChange">
     <button class="btn btn-success w-100" type="submit">Guardar</button>
+    <button class="btn btn-danger mt-2 w-100" type="button" v-on:click="consultarNuevos">Check</button>
   </form>
 
 </template>
