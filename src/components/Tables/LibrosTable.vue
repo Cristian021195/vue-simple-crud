@@ -30,7 +30,7 @@
 </script>
 
 <template>
-    <div class="border border-2 rounded p-2">
+    <div class="border border-2 rounded p-2 mb-4">
         <div class="d-flex justify-content-between">
             <h2>
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-table mb-1" viewBox="0 0 16 16">

@@ -15,6 +15,12 @@ tr td input[type="checkbox"]{
   overflow-y: scroll!important;
   height: 50vh!important;
 }
+#app{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.mainSection{ flex-grow: 1;}
 .leido{background-color: rgba(134, 221, 180, 0.2)!important}
 .noLeido{background-color: rgba(248, 225, 19, 0.15)!important}
 @media only screen and (max-width: 991px){
