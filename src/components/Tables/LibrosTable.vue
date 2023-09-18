@@ -25,6 +25,15 @@
             },
             listar(){
                 console.log(this.libros);
+            },
+            todos(){
+                librosStore.commit('listarTodos');
+            },
+            leidos(){
+                librosStore.commit('listarLeidos');
+            },
+            noLeidos(){
+                librosStore.commit('listarNoLeidos');
             }
         }
     };
@@ -42,9 +51,9 @@
                 ABM Libros
             </h2>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button class="btn btn-sm btn-primary" v-on:click="listar">Todos</button>
-                <button type="button" class="btn btn-sm btn-warning">No Leidos</button>
-                <button type="button" class="btn btn-sm btn-success">Leidos</button>                
+                <button class="btn btn-sm btn-primary" v-on:click="todos">Todos</button>
+                <button type="button" class="btn btn-sm btn-warning" v-on:click="noLeidos">No Leidos</button>
+                <button type="button" class="btn btn-sm btn-success" v-on:click="leidos">Leidos</button>                
             </div>
         </div>
         <div class="table-responsive">

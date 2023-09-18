@@ -6,7 +6,7 @@
 
 <template>
   
-  <footer class="bg-success text-white p-2">&copy; Cristian Ismael Gramajo</footer>
+  <footer class="bg-success text-white p-2 py-4 text-center">&copy; Cristian Ismael Gramajo</footer>
 
 </template>
 
