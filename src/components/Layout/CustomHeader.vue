@@ -8,12 +8,12 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Libros VUE</a>
+        <a class="navbar-brand" href="#">📚 Libros VUE</a>
         <div>
-          <ul class="d-flex gap-2">
-            <li> <a href="#"> Opcion #1 </a></li>
-            <li> <a href="#"> Opcion #2 </a></li>
-            <li> <a href="#"> Opcion #3 </a></li>
+          <ul class="d-flex gap-2 mb-0">
+            <li> <a href="#"> Inicio </a></li>
+            <li> <a href="#"> ABM / CRUD </a></li>
+            <li> <a href="https://github.com/Cristian021195/vue-simple-crud" target="_blank"> Repositorio </a></li>
           </ul>
         </div>
       </div>
