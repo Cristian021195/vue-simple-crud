@@ -1,43 +1,52 @@
 <script>
-    import { ref, toRaw } from 'vue'
     import { librosStore } from '../../store';
 
     export default {
         name: 'LibrosTable',
         data(){
             return {
-                libros: librosStore.state.libros
-            }            
-        },        
+                libros: librosStore.state.libros,
+                currentAction: librosStore.state.currentAction
+            }
+        },     
         methods: {
             saludo(titulo){
                 console.log('hola desde: '+titulo)
             },
-            eliminar(titulo, indx, id){
+            eliminar(id){
                 let resp = window.confirm("¿Eliminar libro?");
-                resp && librosStore.commit('borrarLibro',id);                
+                resp && librosStore.commit('borrarLibro',id);
+                if(this.currentAction == 'leidos'){
+                    this.$data.libros = librosStore.getters.listarLibrosLeidos;
+                }else if(this.currentAction == 'noLeidos'){
+                    this.$data.libros = librosStore.getters.listarLibrosNoLeidos;
+                }else if(this.currentAction == 'todos'){
+                    this.$data.libros = librosStore.getters.listarLibros;
+                }
             },
             getIndx(indx){
                 console.log(indx)
             },
-            leido(titulo){
-                librosStore.commit('leido',titulo);
-            },
-            listar(){
-                console.log(this.libros);
+            leido(id){
+                librosStore.commit('leido',id);
             },
             todos(){
-                librosStore.commit('listarTodos');
+                this.$data.currentAction = 'todos';
+                librosStore.commit('changeAction', 'todos')
+                this.$data.libros = librosStore.getters.listarLibros;
             },
             leidos(){
-                librosStore.commit('listarLeidos');
+                this.$data.currentAction = 'leidos';
+                librosStore.commit('changeAction', 'leidos')
+                this.$data.libros = librosStore.getters.listarLibrosLeidos;
             },
             noLeidos(){
-                librosStore.commit('listarNoLeidos');
+                this.$data.currentAction = 'noLeidos';
+                librosStore.commit('changeAction', 'noLeidos')
+                this.$data.libros = librosStore.getters.listarLibrosNoLeidos;
             }
         }
     };
-    //console.log(librosStore.state.libros)
 </script>
 
 <template>
@@ -71,8 +80,8 @@
                         <td>{{libro.titulo}}</td>
                         <td>{{libro.autor}}</td>
                         <td class="">
-                            <button type="button" class="btn btn-sm bg-danger text-white mx-1" v-on:click="eliminar(libro.titulo, libro_i, libro.id)">🗑</button>
-                            <input title="leido" class="form-check-input mx-1" type="checkbox" :checked="libro.activo"  v-on:change="leido(libro.titulo)">
+                            <button type="button" class="btn btn-sm bg-danger text-white mx-1" v-on:click="eliminar(libro.id)">🗑</button>
+                            <input title="leido" class="form-check-input mx-1" type="checkbox" :checked="libro.activo"  v-on:change="leido(libro.id)">
                         </td>
                     </tr>
                 </tbody>

@@ -6,10 +6,14 @@ import { v4 as uuidv4 } from 'uuid';
 export const librosStore = createStore({
     state:{ //() {
       //return {
-        libros: JSON.parse(localStorage.getItem('libros') || "[]")
+        libros: JSON.parse(localStorage.getItem('libros') || "[]"),
+        currentAction: 'todos'
       //}
     },
     mutations: {
+      /*changeAction(state, action){
+        state.currentAction = action;
+      },
       addBook (state, nuevoLibro) {
         state.libros.push({...nuevoLibro, activo:true, id: uuidv4()});
         localStorage.setItem('libros', JSON.stringify(state.libros));
@@ -22,8 +26,7 @@ export const librosStore = createStore({
         }        
       },
       listarTodos(state){
-        state.libros = JSON.parse(localStorage.getItem('libros') || "[]")
-        console.log(state.libros)
+        state.libros = [...(JSON.parse(localStorage.getItem('libros') || "[]"))]
       },
       listarNoLeidos(state){
 
@@ -35,17 +38,29 @@ export const librosStore = createStore({
         }
         console.log(state.libros)
         
+      },*/
+      changeAction(state, action){
+        state.currentAction = action;
+      },
+      addBook (state, nuevoLibro) {
+        //console.log(state.currentAction)
+        const genId = uuidv4()
+        state.libros.push({...nuevoLibro, activo:true, id: genId});
+        localStorage.setItem('libros', JSON.stringify(state.libros));
+
+        /*if(state.currentAction == 'leidos'){
+          state.libros = librosStore.getters.listarLibrosLeidos;
+        }*/
+
       },
       borrarLibro (state, id){
-        /*state.libros.splice(indx, 1);
-        localStorage.setItem('libros', JSON.stringify(state.libros));*/
         const indx = state.libros.findIndex((obj) => obj.id === id);
         indx > -1 && state.libros.splice(indx, 1);
         localStorage.setItem('libros', JSON.stringify(state.libros));
       },
-      leido (state, titulo){
+      leido (state, id){
         let libros = state.libros.map((l,li)=>{
-          if(l.titulo === titulo){
+          if(l.id === id){
             l.activo = !l.activo;
           }
           return l
@@ -57,6 +72,12 @@ export const librosStore = createStore({
     getters: {
       listarLibros: (state) => {
         return state.libros;
+      },
+      listarLibrosLeidos: (state) => {
+        return state.libros.filter((l,li)=>l.activo === true);
+      },
+      listarLibrosNoLeidos: (state) => {
+        return state.libros.filter((l,li)=>l.activo === false);
       },
       cantidadLibros: (state) => {
         return state.libros.length;

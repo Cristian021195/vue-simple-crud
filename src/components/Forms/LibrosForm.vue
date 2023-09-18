@@ -13,6 +13,7 @@
         cargarLibro(e){
           e.preventDefault();
           librosStore.commit('addBook', {titulo: this.titulo, autor: this.autor})
+          //console.log(librosStore.state.currentAction)
           e.target.reset();
         },
         handleChange(e){
