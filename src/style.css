@@ -10,10 +10,13 @@ header nav ul li a:hover{background-color: whitesmoke; color:black; transition: 
 tr td input[type="checkbox"]{
   vertical-align: middle;
 }
+.titulo::first-letter{color: #198754;}
 .table-responsive{
   overflow-y: scroll!important;
   height: 50vh!important;
 }
+.leido{background-color: rgba(134, 221, 180, 0.2)!important}
+.noLeido{background-color: rgba(248, 225, 19, 0.15)!important}
 @media only screen and (max-width: 991px){
   .table-responsive{
     overflow-x: scroll!important;

@@ -12,6 +12,7 @@ import { createApp } from 'vue';
   <CustomHeader/>
   <div class="container vh-100">
     <div class="row">
+      <h1 class="text-center my-4 titulo fw-bold">Inicio</h1>
       <div class="col-md-4 col-lg-3 col-sm-12 col-xs-12 col-12 p-2">
         <LibrosForm/>
       </div>
